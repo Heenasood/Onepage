@@ -1,6 +1,11 @@
 pipeline {
   agent any
   stages {
+    stage('libra') {
+      steps {
+        library 'myFirstLibrary'
+      }
+    }
     stage('Print Build Info') {
       steps {
         echo 'Print Build Info: ${BuildName}'
