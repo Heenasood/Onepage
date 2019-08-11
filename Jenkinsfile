@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Disable balancer') {
       steps {
-        libraryResource 'disableBalancerUtils()'
+        libraryResource 'disableBalancerUtils'
       }
     }
     stage('Deploy') {
