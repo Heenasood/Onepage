@@ -28,6 +28,6 @@ pipeline {
     }
   }
   environment {
-    BuildName = 'EnteringInteoSharedPipe'
+    BuildName = 'EnteringIntoSharedPipe'
   }
 }
