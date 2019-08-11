@@ -6,14 +6,9 @@ pipeline {
         library 'myFirstLibrary'
       }
     }
-    stage('Print Build Info') {
-      steps {
-        echo 'Print Build Info: ${BuildName}'
-      }
-    }
     stage('Disable balancer') {
       steps {
-        load 'disableBalancerUtils()'
+        libraryResource 'disableBalancerUtils()'
       }
     }
     stage('Deploy') {
