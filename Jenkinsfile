@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  libraries {
-    lib('')
-  }
   stages {
     stage('Deploy') {
       steps {
