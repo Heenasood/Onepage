@@ -3,13 +3,13 @@ pipeline {
   stages {
     stage('Deploy2') {
       steps {
-        library 'myFirstLibrary'
-        libraryResource 'deploy'
+        libraryResource 'myFirstLibrary.deploy'
+        library 'myFirstLibrary.*'
       }
     }
     stage('Deploy') {
       steps {
-        load 'deploy()'
+        libraryResource 'myFirstLibrary.deploy()'
       }
     }
     stage('Enable balancer') {
