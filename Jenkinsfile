@@ -1,13 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('library') {
-      steps {
-        library 'myFirstLibrary'
-      }
-    }
     stage('Deploy2') {
       steps {
+        library 'myFirstLibrary'
         libraryResource 'deploy'
       }
     }
