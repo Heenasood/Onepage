@@ -1,6 +1,11 @@
 pipeline {
   agent any
   stages {
+    stage('Deploy2') {
+      steps {
+        libraryResource 'deploy'
+      }
+    }
     stage('Deploy') {
       steps {
         load 'deploy()'
