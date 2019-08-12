@@ -3,7 +3,6 @@ pipeline {
   stages {
     stage('Deploy2') {
       steps {
-        libraryResource 'myFirstLibrary.deploy'
         library 'myFirstLibrary.*'
       }
     }
