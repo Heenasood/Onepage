@@ -1,16 +1,9 @@
 pipeline {
   agent any
+  libraries {
+    lib('')
+  }
   stages {
-    stage('libra') {
-      steps {
-        library 'myFirstLibrary'
-      }
-    }
-    stage('Disable balancer') {
-      steps {
-        libraryResource 'disableBalancerUtils'
-      }
-    }
     stage('Deploy') {
       steps {
         load 'deploy()'
