@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Deploy2') {
       steps {
-        library 'myFirstLibrary.deploy()'
+        library 'myFirstLibrary'
       }
     }
     stage('Deploy') {
