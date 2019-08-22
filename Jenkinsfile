@@ -1,24 +1,31 @@
 pipeline {
   agent any
   stages {
-    stage('Deploy2') {
+    stage('SharedLibraryStep') {
       steps {
-        library 'myFirstLibrary'
+        script {
+          @Library('myFirstLibrary')_
+
+          stage('Print Build Info') {
+            printBuildinfo {
+              name = "Sample Name"
+            }
+          } stage('Disable balancer') {
+            disableBalancerUtils()
+          } stage('Deploy') {
+            deploy()
+          } stage('Enable balancer') {
+            enableBalancerUtils()
+          } stage('Check Status') {
+            checkStatus()
+          }
+        }
+
       }
     }
-    stage('Deploy') {
+    stage('Print Success') {
       steps {
-        libraryResource 'myFirstLibrary.deploy()'
-      }
-    }
-    stage('Enable balancer') {
-      steps {
-        load 'enableBalancerUtils()'
-      }
-    }
-    stage('Check Status') {
-      steps {
-        load 'checkStatus()'
+        echo 'Shared Library step has been successfully executed'
       }
     }
   }
