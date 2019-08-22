@@ -2,36 +2,45 @@ pipeline {
   agent any
   stages {
     stage('SharedLibraryStep') {
-      steps {
-        node(label: 'master') {
-          script {
-            @Library('myFirstLibrary')_
+      parallel {
+        stage('SharedLibraryStep') {
+          steps {
+            node(label: 'master') {
+              script {
+                @Library('myFirstLibrary')_
 
-            stage('Print Build Info') {
-              printBuildinfo {
-                name = "Sample Name"
+                stage('Print Build Info') {
+                  printBuildinfo {
+                    name = "Sample Name"
+                  }
+                } stage('Disable balancer') {
+                  disableBalancerUtils()
+                } stage('Deploy') {
+                  deploy()
+                } stage('Enable balancer') {
+                  enableBalancerUtils()
+                } stage('Check Status') {
+                  checkStatus()
+                }
               }
-            } stage('Disable balancer') {
-              disableBalancerUtils()
-            } stage('Deploy') {
-              deploy()
-            } stage('Enable balancer') {
-              enableBalancerUtils()
-            } stage('Check Status') {
-              checkStatus()
+
             }
+
           }
-
         }
+        stage('PrintMsg') {
+          steps {
+            node(label: 'NewSlave') {
+              echo 'Print message on Slave Node'
+            }
 
+          }
+        }
       }
     }
     stage('Print Success') {
       steps {
-        node(label: 'NewSlave') {
-          echo 'Shared Library step has been successfully executed'
-        }
-
+        echo 'Both the nodes has been executed'
       }
     }
   }
