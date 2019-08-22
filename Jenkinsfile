@@ -21,11 +21,13 @@ pipeline {
           }
         }
 
+        node(label: 'master')
       }
     }
     stage('Print Success') {
       steps {
         echo 'Shared Library step has been successfully executed'
+        node(label: 'NewSlave')
       }
     }
   }
