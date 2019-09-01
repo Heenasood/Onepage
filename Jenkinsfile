@@ -2,6 +2,10 @@ pipeline {
   agent any
   stages {
     stage('SharedLibraryStep') {
+      environment {
+        param1 = 'One Default'
+        param2 = 'Parameter2'
+      }
       parallel {
         stage('SharedLibraryStep') {
           steps {
@@ -12,8 +16,6 @@ pipeline {
                 stage('Print Build Info') {
                   printBuildinfo {
                     name = "Heena Sood"
-                    env.param1 = "One default"
-                    env.param2 = "TWO PARAMETER"
                   }
                 } stage('Disable balancer') {
                   disableBalancerUtils()
