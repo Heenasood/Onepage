@@ -11,7 +11,9 @@ pipeline {
 
                 stage('Print Build Info') {
                   printBuildinfo {
-                    name = "Sample Name"
+                    name = "Heena Sood"
+                    Param1 = "parameter1"
+                    Param2 = "parameter2"
                   }
                 } stage('Disable balancer') {
                   disableBalancerUtils()
