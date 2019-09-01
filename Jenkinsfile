@@ -12,8 +12,8 @@ pipeline {
                 stage('Print Build Info') {
                   printBuildinfo {
                     name = "Heena Sood"
-                    Param1 = 1
-                    Param2 = 'parameter2'
+                    env.param1 = "One default"
+                    env.param2 = "TWO PARAMETER"
                   }
                 } stage('Disable balancer') {
                   disableBalancerUtils()
