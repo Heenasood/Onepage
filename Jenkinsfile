@@ -15,9 +15,17 @@ pipeline {
                 parameters: [
                   choice(name: 'ENVIRONMENT', choices: ['dev','qa'].join('\n'), description: 'Please select the Environment')]
                   env.ENVIRONMENT = INPUT_PARAMS.ENVIRONMENT
-                  env.IMAGE_TAG = INPUT_PARAMS.IMAGE_TAG
                 }
 
+              }
+
+            }
+          }
+          stage('Use Deployment Parameters') {
+            steps {
+              script {
+                echo "All parameters have been set as Environment Variables"
+                echo "Selected Environment: ${env.ENVIRONMENT}"
               }
 
             }
