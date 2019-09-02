@@ -5,8 +5,7 @@ pipeline {
       environment {
         param1 = 'One Default'
         param2 = 'Parameter2'
-        qa = 'qa'
-        dev = 'dev'
+        Environment = 'dev'
       }
       parallel {
         stage('Gather Deployment Parameters') {
