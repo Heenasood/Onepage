@@ -23,15 +23,6 @@ pipeline {
 
             }
           }
-          stage('Use Deployment Parameters') {
-            steps {
-              script {
-                echo "All parameters have been set as Environment Variables"
-                echo "Selected Environment: ${env.ENVIRONMENT}"
-              }
-
-            }
-          }
           stage('SharedLibraryStep') {
             steps {
               node(label: 'master') {
@@ -65,6 +56,15 @@ pipeline {
 
             }
           }
+        }
+      }
+      stage('Use Deployment Parameters') {
+        steps {
+          script {
+            echo "All parameters have been set as Environment Variables"
+            echo "Selected Environment: ${env.ENVIRONMENT}"
+          }
+
         }
       }
       stage('Print Success') {
