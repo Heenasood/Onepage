@@ -29,8 +29,8 @@ pipeline {
                 ])
 
                 // Save to variables. Default to empty string if not found.
-                inputConfig = userInput.Config?:''
-                inputTest = userInput.Test?:''
+                inputConfig = userInput.Config?:'heena1'
+                inputTest = userInput.Test?:'heena2'
 
                 // Echo to console
                 echo("IQA Sheet Path: ${inputConfig}")
