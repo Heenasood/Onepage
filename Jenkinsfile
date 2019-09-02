@@ -64,6 +64,8 @@ pipeline {
                   } stage('Check Status') {
                     checkStatus()
                   }
+
+                  checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'BuildChooserSetting', buildChooser: [$class: 'AncestryBuildChooser', ancestorCommitSha1: '', maximumAgeInDays: 5]]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'e0e2243f-7676-4939-8e20-fae8aab9bc65', url: 'https://github.com/Heenasood/Onepage.git']]])
                 }
 
               }
