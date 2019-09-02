@@ -9,16 +9,38 @@ pipeline {
         qa = 'qa'
       }
       parallel {
-        stage('Gather Deployment Parameters') {
+        stage('Interactive_Input') {
           steps {
-            timeout(time: 30, unit: 'SECONDS') {
-              script {
-                def INPUT_PARAMS = input message: 'Please Provide Parameters', ok: 'Next',
-                parameters: [
-                  choice(name: 'test', choices: ['dev','qa'].join('\n'), description: 'Please select the Environment')]
-                  env.ENVIRONMENT = INPUT_PARAMS.test
-                }
+            script {
+              def inputConfig
+              def inputTest
 
+              // Get the input
+              def userInput = input(
+                id: 'userInput', message: 'Enter path of test reports:?',
+                parameters: [
+
+                  string(defaultValue: 'None',
+                  description: 'Path of config file',
+                  name: 'Config'),
+                  string(defaultValue: 'None',
+                  description: 'Test Info file',
+                  name: 'Test'),
+                ])
+
+                // Save to variables. Default to empty string if not found.
+                inputConfig = userInput.Config?:''
+                inputTest = userInput.Test?:''
+
+                // Echo to console
+                echo("IQA Sheet Path: ${inputConfig}")
+                echo("Test Info file path: ${inputTest}")
+
+                // Write to file
+                writeFile file: "inputData.txt", text: "Config=${inputConfig}\r\nTest=${inputTest}"
+
+                // Archive the file (or whatever you want to do with it)
+                archiveArtifacts 'inputData.txt'
               }
 
             }
