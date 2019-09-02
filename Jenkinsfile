@@ -15,8 +15,8 @@ pipeline {
               script {
                 def INPUT_PARAMS = input message: 'Please Provide Parameters', ok: 'Next',
                 parameters: [
-                  choice(name: 'ENVIRONMENT', choices: ['dev','qa'].join('\n'), description: 'Please select the Environment')]
-                  env.ENVIRONMENT = INPUT_PARAMS.ENVIRONMENT
+                  choice(name: 'environment', choices: ['dev','qa'].join('\n'), description: 'Please select the Environment')]
+                  env.ENVIRONMENT = INPUT_PARAMS.environment
                 }
 
               }
