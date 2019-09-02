@@ -15,8 +15,8 @@ pipeline {
               script {
                 def INPUT_PARAMS = input message: 'Please Provide Parameters', ok: 'Next',
                 parameters: [
-                  choice(name: 'environment', choices: ['dev','qa'].join('\n'), description: 'Please select the Environment')]
-                  env.ENVIRONMENT = INPUT_PARAMS.environment
+                  choice(name: 'ENVIRONMENT', choices: ['dev','qa'].join('\n'), description: 'Please select the Environment')]
+                  env.ENVIRONMENT = INPUT_PARAMS.ENVIRONMENT
                 }
 
               }
@@ -75,5 +75,7 @@ pipeline {
     }
     environment {
       BuildName = 'EnteringIntoSharedPipe'
+      qa = 'qa'
+      dev = 'dev'
     }
   }
