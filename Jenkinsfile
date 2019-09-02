@@ -84,7 +84,7 @@ pipeline {
         steps {
           script {
             echo "All parameters have been set as Environment Variables"
-            echo "Selected Environment: ${env.ENVIRONMENT}"
+            echo "Selected Environment: ${params.select_environment}"
           }
 
         }
@@ -99,5 +99,10 @@ pipeline {
       BuildName = 'EnteringIntoSharedPipe'
       qa = 'qa'
       dev = 'dev'
+    }
+    parameters {
+      choice(name: 'select_environment', choices: '''dev
+qa
+prod''', description: 'Select environment')
     }
   }
