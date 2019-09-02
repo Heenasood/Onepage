@@ -101,8 +101,8 @@ pipeline {
       dev = 'dev'
     }
     parameters {
-      choice(name: 'select_environment', choices: '''dev
+      choice(name: 'select_environment', choices: '''prod
 qa
-prod''', description: 'Select environment')
+dev''', description: 'Select environment')
     }
   }
